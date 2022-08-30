@@ -3,7 +3,7 @@ const app = express();
 const fs = require('fs')
 const PORT = 8001;
 app.use(express.json());
-app.post("./pets", function(req, res) {
+app.post("/pets", function(req, res) {
     console.log(req.body) //Able to access body from postman (must enter info in Postman using => body, raw, JSON)
     fs.readFile('./pets.json', "utf-8", (err,data) => {
         if (err) throw err;
@@ -23,12 +23,12 @@ app.post("./pets", function(req, res) {
         res.send(stringifiedPets)
     })
 })
-app.get("./pets/3", function(req, res) {
+app.get("/pets/3", function(req, res) {
     res.status(200)
     res.setHeader('Content-Type', 'application/json');
     res.send(req.body)
 })
-app.patch("./pets/3", function(req, res) {
+app.patch("/pets/3", function(req, res) {
     const petdata = require('./pets.json')
     const updatePet = {"name": "fido"}
     petdata.push(updatePet)
@@ -36,17 +36,17 @@ app.patch("./pets/3", function(req, res) {
     res.setHeader('Content-Type', 'application/json');
     res.send(req.body)
 })
-app.get("./pets/3", function(req, res) {
+app.get("/pets/3", function(req, res) {
     res.status(200)
     res.setHeader('Content-Type', 'application/json');
     res.send(req.body)
 })
-app.delete("./pets/3", function(req, res) {
+app.delete("/pets/3", function(req, res) {
     res.status(200)
     res.setHeader('Content-Type', 'application/json');
     res.send(req.body)
 })
-app.get("./pets/3", function(req, res) {
+app.get("/pets/3", function(req, res) {
     res.status(404)
     res.setHeader('Content-Type, text/plain')
     res.send(req.body)
